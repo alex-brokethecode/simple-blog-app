@@ -12,7 +12,7 @@
     </header>
     
     <div>
-        <h1 class="mb-4">Recent posts</h1>
+        <h1 class="mb-4 fs-3">Recent posts</h1>
 
         <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
             {% for post in posts %}
@@ -26,6 +26,8 @@
                         <p class="card-text">{{ post.content|truncatewords:20 }}Some quick example text to build on the card title and make up the bulk of the card's content.</p>
                         <a href="{% url "blog:post_details" pk=post.id %}" class="btn btn-outline-primary">Read more</a>
                     </div>
+
+                    <!-- TODO: Dynamic values -->
                     <div class="card-footer d-flex justify-content-between ">
                         <div>
                             <span>1,090 views</span>

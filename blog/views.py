@@ -50,7 +50,7 @@ def post_update(request, pk):
         form.save()
         return redirect('blog:post_details', pk=post.pk)
 
-    return render(request, 'blog/blog_update.html', {'form': form})
+    return render(request, 'blog/blog_update.html', {'form': form, 'post_id': post.pk})
 
 
 def post_delete(request, pk):
