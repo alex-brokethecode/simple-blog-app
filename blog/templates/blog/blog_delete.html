@@ -1,5 +1,13 @@
 {% extends "project/base.html" %} {% block title %} Delete {% endblock title %} 
 {% block content %}
+
 <h1>Delete</h1>
-<p>Deleting {{ post.id }}</p>
+
+<form action="" method="post">
+    {% csrf_token %}
+    <p>Are you sure you want to delete {{ post.title }}?</p>
+    <button type="submit">Delete</button>
+</form>
+    <a href="{% url "blog:post_details" pk=post.id %}?next={{ request.path }}">Cancel</a>
+
 {% endblock content %}

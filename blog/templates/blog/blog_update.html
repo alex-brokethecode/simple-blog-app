@@ -1,5 +1,23 @@
 {% extends "project/base.html" %} {% block title %} Update {% endblock title %} 
 {% block content %}
 <h1>Update</h1>
-<p>Updating {{ post.id }}</p>
+
+<form action="" method="post">
+    {% csrf_token %}
+
+    <!-- TODO: Improve errors display -->
+    {% if form.errors %}
+        <ul>
+            {% for field, errors in form.errors.items %}
+                <li><strong>{{ field|title }}:</strong>{{ errors|join:", " }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
+    {{ form.as_p }}
+    <button type="submit">Save</button>
+</form>
+
+<a href="{% url "blog:home" %}">Back to Home</a>
+
 {% endblock content %}

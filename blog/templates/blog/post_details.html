@@ -1,9 +1,12 @@
 {% extends "project/base.html" %} {% block title %} Details {% endblock title %} 
 {% block content %}
-<h1>Details</h1>
-<p>Details of {{ post.title }}</p>
+<h1>Details of {{ post.title }}</h1>
+<strong>By: {{ post.author }} | {{ post.date_created|date:"Y-m-d H:i" }}</strong>
+<p>{{ post.content|linebreaksbr }}</p>
 
+{% if user == post.author %}
 <a href="{% url "blog:post_update" pk=post.id %}">Update</a>
 <a href="{% url "blog:post_delete" pk=post.id %}">Delete</a>
+{% endif %}
 
 {% endblock content %}
