@@ -1,0 +1,9 @@
+{% extends "project/base.html" %} {% block title %} Details {% endblock title %} 
+{% block content %}
+<h1>Details</h1>
+<p>Details of {{ post.title }}</p>
+
+<a href="{% url "blog:post_update" pk=post.id %}">Update</a>
+<a href="{% url "blog:post_delete" pk=post.id %}">Delete</a>
+
+{% endblock content %}
