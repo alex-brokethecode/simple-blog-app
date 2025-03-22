@@ -8,6 +8,7 @@ class Post(models.Model):
     date_created = models.DateTimeField(auto_now_add=True)
     date_updated = models.DateTimeField(auto_now=True)
     author = models.ForeignKey(User, on_delete=models.CASCADE)
+    picture = models.ImageField(upload_to='images/', null=True)
 
     class Meta:
         verbose_name = 'Post'
