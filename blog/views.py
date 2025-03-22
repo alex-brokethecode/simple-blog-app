@@ -16,7 +16,7 @@ def post_create(request):
         return redirect('blog:home')
 
     if request.method == 'POST':
-        form = PostForm(request.POST)
+        form = PostForm(request.POST, request.FILES)
 
         if form.is_valid():
             post = form.save(commit=False)
@@ -44,7 +44,9 @@ def post_update(request, pk):
     if request.user != post.author:
         return redirect('blog:home')
 
-    form = PostForm(data=request.POST or None, instance=post)
+    form = PostForm(data=request.POST or None,
+                    files=request.FILES or None,
+                    instance=post)
 
     if request.method == 'POST' and form.is_valid():
         form.save()
