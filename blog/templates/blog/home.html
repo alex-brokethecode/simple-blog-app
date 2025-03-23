@@ -12,20 +12,23 @@
     </header>
     
     <div>
-        <h1 class="mb-4 fs-3">Recent posts</h1>
+        <h1 class="mb-4 fs-3 text-primary">Recent posts</h1>
 
         <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
             {% for post in posts %}
             <div class="col">
                 <div class="card">
                     {% if post.picture %}
-                    <img src="{{ post.picture.url }}" class="card-img-top" alt="{{ post.title|truncatewords:20 }}">
+                    <a href="{% url "blog:post_details" pk=post.id %}">
+                        <img src="{{ post.picture.url }}" class="card-img-top" alt="{{ post.title|truncatewords:20 }}">
+                    </a>
                     {% endif %}
-                    <div class="card-body">
-                        <h5 class="card-title">{{ post.title }}</h5>
-                        <p class="card-text">{{ post.content|truncatewords:20 }}Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                        <a href="{% url "blog:post_details" pk=post.id %}" class="btn btn-outline-primary">Read more</a>
-                    </div>
+                    <a href="{% url "blog:post_details" pk=post.id %}" style="text-decoration: none;">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ post.title }}</h5>
+                            <p class="card-text text-dark">{{ post.content|truncatewords:15 }}Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                        </div>
+                    </a>
 
                     <!-- TODO: Dynamic values -->
                     <div class="card-footer d-flex justify-content-between ">

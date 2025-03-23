@@ -52,7 +52,7 @@ def post_update(request, pk):
         form.save()
         return redirect('blog:post_details', pk=post.pk)
 
-    return render(request, 'blog/blog_update.html', {'form': form, 'post_id': post.pk})
+    return render(request, 'blog/post_update.html', {'form': form, 'post_id': post.pk})
 
 
 def post_delete(request, pk):
@@ -69,4 +69,4 @@ def post_delete(request, pk):
         next_url = request.GET.get('next', 'blog:home')
         return redirect(next_url)
 
-    return render(request, 'blog/blog_delete.html', {'post': post})
+    return render(request, 'blog/post_delete.html', {'post': post})
