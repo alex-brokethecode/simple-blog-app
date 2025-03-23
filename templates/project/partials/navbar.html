@@ -15,9 +15,9 @@
 
         {% if user.is_authenticated %}
         <span class="text-light me-3">Hello {{ user|upper }}</span>
-        <a class="btn btn-danger" href="{% url "users:user_logout" %}">Logout</a>
+        <a class="btn btn-danger" href="{% url "users:user_logout" %}?next={{ request.path }}">Logout</a>
         {% else %}
-        <a class="btn btn-success" href="{% url "users:user_login" %}">Login</a>
+        <a class="btn btn-success" href="{% url "users:user_login" %}?next={{ request.path }}">Login</a>
         {% endif %}
       </div>
     </div>

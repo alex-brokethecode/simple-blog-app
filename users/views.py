@@ -6,8 +6,10 @@ from .forms import UserLoginForm
 
 
 def user_login(request):
+    next_url = request.GET.get('next', 'blog:home')
+
     if request.user.is_authenticated:
-        return redirect('blog:home')
+        return redirect(next_url)
 
     form = UserLoginForm(data=request.POST or None)
 
@@ -19,8 +21,7 @@ def user_login(request):
 
         if user is not None:
             login(request, user)
-            # TODO: Return to previous page not always home page
-            return redirect('blog:home')
+            return redirect(next_url)
         else:
             form.add_error(None, 'Invalid username or password')
 
@@ -33,5 +34,6 @@ def user_register(request):
 
 @login_required(login_url='users:user_login')
 def user_logout(request):
+    next_url = request.GET.get('next', 'blog:home')
     logout(request)
-    return redirect('blog:home')
+    return redirect(next_url)

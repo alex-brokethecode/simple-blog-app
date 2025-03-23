@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404, redirect
-# from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required
 
 from .models import Post
 from .forms import PostForm
@@ -11,10 +11,8 @@ def home(request):
     return render(request, 'blog/home.html', {'posts': posts})
 
 
+@login_required(login_url='users:user_login')
 def post_create(request):
-    if not request.user.is_authenticated:
-        return redirect('blog:home')
-
     if request.method == 'POST':
         form = PostForm(request.POST, request.FILES)
 
@@ -35,10 +33,8 @@ def post_details(request, pk):
     return render(request, 'blog/post_details.html', {'post': post})
 
 
+@login_required(login_url='users:user_login')
 def post_update(request, pk):
-    if not request.user.is_authenticated:
-        return redirect('blog:home')
-
     post = get_object_or_404(Post, id=pk)
 
     if request.user != post.author:
@@ -55,10 +51,8 @@ def post_update(request, pk):
     return render(request, 'blog/post_update.html', {'form': form, 'post_id': post.pk})
 
 
+@login_required(login_url='users:user_login')
 def post_delete(request, pk):
-    if not request.user.is_authenticated:
-        return redirect('blog:home')
-
     post = get_object_or_404(Post, id=pk)
 
     if request.user != post.author:
