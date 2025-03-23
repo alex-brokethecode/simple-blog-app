@@ -10,7 +10,7 @@ class UserLoginForm(forms.Form):
         label='',
         widget=forms.TextInput(
             attrs={
-                'class': 'form-control mb-4',
+                'class': 'form-control mb-2 mt-4',
                 'placeholder': 'Username',
             }
         )
@@ -19,7 +19,7 @@ class UserLoginForm(forms.Form):
         label='',
         widget=forms.PasswordInput(
             attrs={
-                'class': 'form-control mb-4',
+                'class': 'form-control mb-2 mt-4',
                 'placeholder': 'Password',
             }
         )
@@ -31,7 +31,7 @@ class UserRegisterForm(UserCreationForm):
         label='',
         widget=forms.TextInput(
             attrs={
-                'class': 'form-control mb-4',
+                'class': 'form-control mb-2 mt-4',
                 'placeholder': 'Username',
             }
         )
@@ -40,7 +40,7 @@ class UserRegisterForm(UserCreationForm):
         label='',
         widget=forms.PasswordInput(
             attrs={
-                'class': 'form-control mb-4',
+                'class': 'form-control mb-2 mt-4',
                 'placeholder': 'Password',
             }
         )
@@ -49,7 +49,7 @@ class UserRegisterForm(UserCreationForm):
         label='',
         widget=forms.PasswordInput(
             attrs={
-                'class': 'form-control mb-4',
+                'class': 'form-control mb-2 mt-4',
                 'placeholder': 'Password confirmation',
             }
         )

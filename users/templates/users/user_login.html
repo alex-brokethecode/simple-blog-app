@@ -13,13 +13,17 @@
         {% csrf_token %}
 
         {% for field in form %}
-            {{ field }}
+            {{ field }} <!-- Field -->
+
+            <!-- Field Errors -->
+            {% if field.errors %}
+            <p class="text-danger">{{ field.errors|join:", "}}</p>
+            {% endif %}
         {% endfor %}
 
-        <!-- Errors Start-->
+        <!-- Form-wide errors Start -->
         {% include "project/partials/form_errors.html" %}
-        <!-- Errors End-->
-
+        <!-- Form-wide errors End -->
 
         <button type="submit" class="btn btn-primary mt-5 w-100">Login</button>
     </form>

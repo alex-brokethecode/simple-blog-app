@@ -12,6 +12,9 @@
 
         {% for field in form %}
             {{ field }}
+            {% if field.errors %}
+            <p class="text-danger">{{ field.errors|join:"<br>"|linebreaksbr }}</p>
+            {% endif %}
         {% endfor %}
 
         <!-- Errors Start-->
