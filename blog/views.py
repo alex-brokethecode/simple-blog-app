@@ -1,15 +1,21 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
+from django.db.models import Q
 
 from .models import Post
 from .forms import PostForm
 
 
 def home(request):
+    # Get request.GET.q query
+    q = request.GET.get('q', '').strip()
+
     # select_related() -> fetches related authors in one query for efficiency:
-    posts = Post.objects.select_related('author').all()
-    return render(request, 'blog/home.html', {'posts': posts})
+    posts = Post.objects.select_related('author').filter(
+        Q(title__icontains=q) | Q(content__icontains=q) if q else Q())
+
+    return render(request, 'blog/home.html', {'posts': posts, 'q': q})
 
 
 @login_required(login_url='users:user_login')

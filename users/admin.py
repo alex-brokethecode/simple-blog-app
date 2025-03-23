@@ -6,7 +6,8 @@ from django.contrib import admin
 """
 Step 8: Extra Features (Optional, but Recommended!)
 
+- Add likes, visitors
+- Add author profile
 - Add pagination to the blog post list.
-- Implement a search feature.
 - Allow users to comment on posts.
 """

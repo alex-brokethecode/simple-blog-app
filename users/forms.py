@@ -2,8 +2,6 @@ from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 
-# TODO: Use built-in AuthenticationForm or modify this to create a user profile
-
 
 class UserLoginForm(forms.Form):
     username = forms.CharField(
