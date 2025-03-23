@@ -1,5 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
+from django.contrib import messages
 
 from .models import Post
 from .forms import PostForm
@@ -20,6 +21,7 @@ def post_create(request):
             post = form.save(commit=False)
             post.author = request.user
             post.save()
+            messages.success(request, 'Post created successfully')
 
             return redirect('blog:home')
     else:
@@ -46,6 +48,8 @@ def post_update(request, pk):
 
     if request.method == 'POST' and form.is_valid():
         form.save()
+        messages.success(request, 'Post updated successfully')
+
         return redirect('blog:post_details', pk=post.pk)
 
     return render(request, 'blog/post_update.html', {'form': form, 'post_id': post.pk})
@@ -61,6 +65,8 @@ def post_delete(request, pk):
     if request.method == 'POST':
         post.delete()
         next_url = request.GET.get('next', 'blog:home')
+        messages.success(request, 'Post deleted successfully')
+
         return redirect(next_url)
 
     return render(request, 'blog/post_delete.html', {'post': post})

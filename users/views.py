@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login, logout, authenticate
+from django.contrib import messages
 
 from .forms import UserLoginForm, UserRegisterForm
 
@@ -21,6 +22,7 @@ def user_login(request):
 
         if user is not None:
             login(request, user)
+            messages.success(request, 'You have successfully logged in!')
             return redirect(next_url)
         else:
             form.add_error(None, 'Invalid username or password')
@@ -45,6 +47,7 @@ def user_register(request):
 
             if user:
                 login(request, user)
+                messages.success(request, 'You have successfully logged in!')
                 return redirect('blog:home')
     else:
         form = UserRegisterForm()
@@ -56,4 +59,5 @@ def user_register(request):
 def user_logout(request):
     next_url = request.GET.get('next', 'blog:home')
     logout(request)
+    messages.success(request, 'You have successfully logged out!')
     return redirect(next_url)
