@@ -1,0 +1,34 @@
+{% extends "project/base.html" %} {% block title %} Create Post {% endblock title %} 
+{% block content %}
+
+<main class="container" style="max-width: 50rem;">
+    <h1 class="mb-5 fs-3 text-primary">
+        <a href="{% url "blog:home" %}" title="Go Back" class="me-2"><i class="fa-solid fa-arrow-left"></i></a>
+        Create New Post
+    </h1>
+
+    <form action="" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+
+        {% for field in form %}
+            {{ field }}
+        {% endfor %}
+
+        <!-- Errors Start-->
+        {% if form.errors %}
+        <div class="alert alert-dismissible alert-danger mt-5">
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            <ul>
+                {% for field, errors in form.errors.items %}
+                <li><strong>{{ field|title }}:</strong> {{ errors|join:", " }}</li>
+                {% endfor %}
+            </ul>
+          </div>
+        {% endif %}
+        <!-- Errors End-->
+
+        <button type="submit" class="btn btn-primary mt-5 w-100">Create post</button>
+    </form>
+</main>
+
+{% endblock content %}
