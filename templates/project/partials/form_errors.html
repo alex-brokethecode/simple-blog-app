@@ -1,0 +1,20 @@
+{% if form.errors %}
+<div class="alert alert-dismissible alert-danger mt-5">
+    <ul>
+        {% for field, errors in form.errors.items %}
+            <!-- Form-wide errors Start -->
+            {% if field == '__all__' %}
+                {% for error in errors %}
+                    <li>{{ error }}</li>
+                {% endfor %}
+            <!-- Form-wide errors End -->
+
+            <!-- Field errors Start -->
+            {% else %}
+                <li> <strong>{{ field|title }}:</strong> {{ errors|join:", " }}</li>
+            {% endif %}
+            <!-- Field errors End -->
+        {% endfor %}
+    </ul>
+  </div>
+{% endif %}

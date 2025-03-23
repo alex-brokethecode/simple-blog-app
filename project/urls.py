@@ -6,7 +6,8 @@ from django.conf import settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('blog.urls', namespace='blog'))
+    path('', include('blog.urls', namespace='blog')),
+    path('auth/', include('users.urls', namespace='users')),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
