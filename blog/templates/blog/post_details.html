@@ -1,0 +1,22 @@
+{% extends "project/base.html" %} {% block title %} {{ post.title }} {% endblock title %} 
+{% block content %}
+<main class="container" style="max-width: 50rem">
+    <article>
+        <header class="d-flex justify-content-between align-items-center">
+            <p class="text-secondary fs-6">{{ post.author|title }} • {{ post.date_created|date:"M d, Y" }}</p>
+            {% if user == post.author %}
+            <div>
+                <a href="{% url "blog:post_update" pk=post.id %}" title="Edit" class="me-2 text-info"><i class="fa-solid fa-pen-to-square"></i></a>
+                <a href="{% url "blog:post_delete" pk=post.id %}" title="Delete" class="text-danger"><i class="fa-solid fa-trash"></i></a>
+            </div>
+            {% endif %}
+        </header>
+        <h1 class="fs-3 mb-5 text-primary">{{ post.title }}</h1>
+        <img src="{{ post.picture.url }}" alt="{{ post.title }}" class="img-fluid mb-5 w-100 mx-auto">
+        <p>{{ post.content|linebreaksbr }}</p>
+    </article>
+</main>
+
+
+
+{% endblock content %}
