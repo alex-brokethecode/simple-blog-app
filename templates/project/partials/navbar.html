@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg bg-primary" data-bs-theme="dark">
+<nav class="navbar navbar-expand-lg bg-primary py-3" data-bs-theme="dark">
     <div class="container-fluid">
       <a class="navbar-brand" href="{% url "blog:home" %}">Simple Blog</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
@@ -12,10 +12,13 @@
             </a>
           </li>
         </ul>
-        {% comment %} <form class="d-flex">
-          <input class="form-control me-sm-2" type="search" placeholder="Search">
-          <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
-        </form> {% endcomment %}
+
+        {% if user.is_authenticated %}
+        <span class="text-light me-3">Hello {{ user|upper }}</span>
+        <a class="btn btn-danger" href="{% url "users:user_logout" %}?next={{ request.path }}">Logout</a>
+        {% else %}
+        <a class="btn btn-success" href="{% url "users:user_login" %}?next={{ request.path }}">Login</a>
+        {% endif %}
       </div>
     </div>
   </nav>
