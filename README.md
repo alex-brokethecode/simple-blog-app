@@ -9,6 +9,8 @@ This project is a simple blog application built with Django, providing basic fun
 - **Search:** Enables users to search for blog posts by title or content.
 - **Blog Details:** Provides detailed information about individual blog posts.
 
+![capture](https://github.com/user-attachments/assets/cb14648f-d044-446c-a951-b1955daf26a4)
+
 ## Technologies Used
 
 - Python 3.12
@@ -18,8 +20,5 @@ This project is a simple blog application built with Django, providing basic fun
 - [Bootswatch Litera theme](https://bootswatch.com/litera/)
 - [Fontawesome icons](https://fontawesome.com/)
 
-## Usage
 
-- Navigate to `http://127.0.0.1:8000/` to view the blog.
-- Use the navigation links to register, login, search, and view blog details.
-- Access the admin panel at `http://127.0.0.1:8000/admin/` to manage blog posts.
+
